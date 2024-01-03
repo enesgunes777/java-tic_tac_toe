@@ -1,4 +1,4 @@
-# Simple Tic Tac Toe Game
+# Simple Tic Tac Toe Board
 
 ## Introduction
 This game was created as part of the Jetbrains Academy Java Track curriculum.
@@ -7,7 +7,7 @@ This game was created as part of the Jetbrains Academy Java Track curriculum.
 
 The project is divided into 3 classes,
 1. `Main`: starts up the game
-2. `Game`: contains core game methods
+2. `Board`: contains core game methods
 3. `Analyzer`: contains methods for checking the game state
 
 ## User Interaction
@@ -20,7 +20,7 @@ The project is divided into 3 classes,
     3. The destination cell is not empty
 4. The game checks and prints the state board after every move by the user.
 5. There are 4 states that the game can be in
-    1. "Game not finished"
+    1. "Board not finished"
     2. "X" or "O" wins
     3. "Draw"
     4. "Impossible": A future state yet to be implemented [#TODO]

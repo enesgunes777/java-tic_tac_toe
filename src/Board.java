@@ -2,12 +2,12 @@
 import java.util.Objects;
 import java.util.Scanner;
 
-public class Game {
+public class Board {
     private static final int SIZE = 3;
     public boolean isCurrentPlayerX = true;
     private final String[][] BOARD = new String[SIZE][SIZE];
 
-    private final Engine analyzer = new Engine(BOARD);
+    private final Logic analyzer = new Logic(BOARD);
     private final Scanner scanner = new Scanner(System.in);
     private static final String BOARD_FORMAT = """
             ---------

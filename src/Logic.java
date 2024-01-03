@@ -1,8 +1,8 @@
 
-public class Engine {
+public class Logic {
 
     private String[][] boardState;
-    public Engine(String[][] boardState) {
+    public Logic(String[][] boardState) {
         this.boardState = boardState;
     }
 
@@ -40,7 +40,7 @@ public class Engine {
                 }
             }
         }
-        return isThereEmptyCells && winner().equals("");
+        return isThereEmptyCells && winner().isEmpty();
     }
 
     public boolean isDraw() {
