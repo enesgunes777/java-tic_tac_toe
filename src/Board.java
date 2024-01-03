@@ -7,7 +7,7 @@ public class Board {
     public boolean isCurrentPlayerX = true;
     private final String[][] BOARD = new String[SIZE][SIZE];
 
-    private final Logic analyzer = new Logic(BOARD);
+    private final Logic logic = new Logic(BOARD);
     private final Scanner scanner = new Scanner(System.in);
     private static final String BOARD_FORMAT = """
             ---------
@@ -17,32 +17,16 @@ public class Board {
             ---------""";
 
     public void init() {
-        setDefaultBoard();
+        initializeBoard();
         printBoard();
         move();
     }
 
-    public void setDefaultBoard() {
+    public void initializeBoard() {
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
                 BOARD[i][j] = "_";
             }
-        }
-    }
-    // Note: To be implemented
-    public void enterExistingState() {
-        System.out.println("Enter cells:");
-        try {
-            String boardInput = scanner.nextLine();
-            String[] lines = boardInput.split("");
-            for (int i = 0; i < 3; i++) {
-                System.arraycopy(lines, i * 3, BOARD[i], 0, 3);
-            }
-            analyzer.refreshGameState(BOARD);
-            printBoard();
-            checkGameState();
-        } catch (Exception e) {
-            System.out.println("Invalid input");
         }
     }
 
@@ -79,7 +63,7 @@ public class Board {
 
     // TODO: create enum for game states
     public void checkGameState() {
-        String gameResult = analyzer.printStateResult();
+        String gameResult = logic.showCurrentState();
         if ("Game not finished".equals(gameResult)) {
             move();
         } else {
@@ -94,12 +78,6 @@ public class Board {
                 BOARD[1][0], BOARD[1][1], BOARD[1][2],
                 BOARD[2][0], BOARD[2][1], BOARD[2][2]
         );
-    }
-
-    // Note: To be implemented
-    public void printGameState() {
-        printBoard();
-        analyzer.printStateResult();
     }
 
 }

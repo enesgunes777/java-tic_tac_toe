@@ -8,7 +8,7 @@ This game was created as part of the Jetbrains Academy Java Track curriculum.
 The project is divided into 3 classes,
 1. `Main`: starts up the game
 2. `Board`: contains core game methods
-3. `Analyzer`: contains methods for checking the game state
+3. `Logic`: contains methods for checking the game state
 
 ## User Interaction
 
@@ -23,7 +23,6 @@ The project is divided into 3 classes,
     1. "Board not finished"
     2. "X" or "O" wins
     3. "Draw"
-    4. "Impossible": A future state yet to be implemented [#TODO]
 6. The game will only continue accepting input on **state 1** but will stop, print the board and result on any other state
    <br />
    <br />
@@ -33,18 +32,11 @@ The project is divided into 3 classes,
 
 ## Future Improvements
 - [ ] Choose first player
-- [ ] Commands method so user chooses whether to start from scratch or enter existing game state
 - [ ] choose which player goes first
 - [ ] redo ability
 - [ ] replay ability
 - [ ] add history
-- [ ] add custom game such as best of 3 or 5
-- [ ] Add single player mode with AI
-
-## Considerations
-- This project was created using Java 17 and its corresponding features such as
-    - text-blocks
-
+- [ ] Add single player vs. AI
 
 ## Acknowledgements
 
