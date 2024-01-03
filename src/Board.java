@@ -25,7 +25,7 @@ public class Board {
     public void initializeBoard() {
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
-                BOARD[i][j] = "_";
+                BOARD[i][j] = " ";
             }
         }
     }
@@ -63,7 +63,7 @@ public class Board {
 
     // TODO: create enum for game states
     public void checkGameState() {
-        String gameResult = logic.showCurrentState();
+        String gameResult = logic.getCurrentBoardState();
         if ("Game not finished".equals(gameResult)) {
             move();
         } else {

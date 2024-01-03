@@ -2,45 +2,52 @@
 public class Logic {
 
     private final String[][] boardState;
+    private static final int SIZE = 3;
     public Logic(String[][] boardState) {
         this.boardState = boardState;
     }
 
-    // TODO: maybe clean up win state
     public boolean isWinner(String player) {
-        return boardState[0][0].equals(player) && boardState[0][1].equals(player) && boardState[0][2].equals(player) ||
-                boardState[1][0].equals(player) && boardState[1][1].equals(player) && boardState[1][2].equals(player) ||
-                boardState[2][0].equals(player) && boardState[2][1].equals(player) && boardState[2][2].equals(player) ||
-                boardState[0][0].equals(player) && boardState[1][0].equals(player) && boardState[2][0].equals(player) ||
-                boardState[0][1].equals(player) && boardState[1][1].equals(player) && boardState[2][1].equals(player) ||
-                boardState[0][2].equals(player) && boardState[1][2].equals(player) && boardState[2][2].equals(player) ||
-                boardState[0][0].equals(player) && boardState[1][1].equals(player) && boardState[2][2].equals(player) ||
-                boardState[0][2].equals(player) && boardState[1][1].equals(player) && boardState[2][0].equals(player);
+        // Check all rows and columns
+        for (int i = 0; i < SIZE; i++) {
+            if (isWinningLine(player, i, 0, 0, 1) || isWinningLine(player, 0, i, 1, 0)) {
+                return true;
+            }
+        }
+
+        // Check both diagonals
+        return isWinningLine(player, 0, 0, 1, 1) || isWinningLine(player, 0, SIZE - 1, 1, -1);
     }
 
-    public String setWinner() {
-        String winner = "";
-        if (isWinner("X") && isWinner("O")) {
-            winner = "XO";
-        } else if (isWinner("X")) {
-            winner = "X";
-        } else if (isWinner("O")) {
-            winner = "O";
+    private boolean isWinningLine(String player, int startRow, int startCol, int rowStep, int colStep) {
+        for (int i = 0; i < SIZE; i++) {
+            if (!boardState[startRow + i * rowStep][startCol + i * colStep].equals(player)) {
+                return false;
+            }
         }
-        return winner;
+        return true;
+    }
+
+    public String getWinner() {
+        if (isWinner("X")) {
+            return "X";
+        } else if (isWinner("O")) {
+            return "O";
+        }
+        return ""; // Return empty string if there is no winner yet
     }
 
     public boolean isGameInProgress() {
         boolean isThereEmptyCells = false;
-        for (int i = 0; i < 3; i++) {
-            for (int j = 0; j < 3; j++) {
-                if (boardState[i][j].equals("_")) {
+        for (int i = 0; i < SIZE; i++) {
+            for (int j = 0; j < SIZE; j++) {
+                if (boardState[i][j].isEmpty()) {
                     isThereEmptyCells = true;
                     break;
                 }
             }
         }
-        return isThereEmptyCells && setWinner().isEmpty();
+        return isThereEmptyCells && getWinner().isEmpty();
     }
 
     public boolean isDraw() {
@@ -48,13 +55,13 @@ public class Logic {
     }
 
 
-    public String showCurrentState() {
+    public String getCurrentBoardState() {
         if (isGameInProgress()) {
             return "Game not finished";
         } else if (isDraw()) {
             return "Draw";
         } else {
-            return setWinner() + " wins";
+            return getWinner() + " wins";
         }
     }
 }
